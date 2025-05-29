@@ -1,19 +1,18 @@
 import 'dart:ui';
 
 class AppColors {
-  static const colorPrimary = Color(0xFF17244D);
-  static const colorSecondary = Color(0xFFEF4922);
+  static const colorPrimary = Color(0xFF5B91FE);
   static const colorOverlay = Color(0xFFFFA995);
   static const colorBorder = Color(0xFFF0F1F2);
   static const colorBackground = Color(0xFFFBFBFB);
   static const colorDisable = Color(0x00e6f2fe);
   static const colorOptionBorder = Color(0XFFE5E5F0);
 
-  static const colorBlack = Color(0xFF000000);
+  static const colorBlack = Color(0xFF393939);
   static const colorWhite = Color(0xFFFFFFFF);
   static const colorLightGrey = Color(0xFFB0B0B0);
   static const colorThinGrey = Color(0XFFEAEAEA);
-  static const colorGrey = Color(0xFF8594A7);
+  static const colorGrey = Color(0xFF677588);
   static const colorExtraLightGrey = Color(0xFFDCDEE1);
   static const colorDarkGrey = Color(0xFF686666);
   static const colorGreen = Color(0xFF037B49);

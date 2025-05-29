@@ -4,7 +4,7 @@ import 'package:emonesia/styles/app_sizes.dart';
 import 'app_colors.dart';
 
 class TextStyles {
-  static TextStyle regularInterFont({double? fontSize, Color? color}) {
+  static TextStyle regularMontserratFont({double? fontSize, Color? color}) {
     return TextStyle(
       fontSize: fontSize ?? FontSize.s14,
       color: color ?? AppColors.colorBlack,
@@ -12,7 +12,7 @@ class TextStyles {
     );
   }
 
-  static TextStyle mediumInterFont({double? fontSize, Color? color}) {
+  static TextStyle mediumMontserratFont({double? fontSize, Color? color}) {
     return TextStyle(
       fontSize: fontSize ?? FontSize.s14,
       color: color ?? AppColors.colorBlack,
@@ -20,7 +20,7 @@ class TextStyles {
     );
   }
 
-  static TextStyle boldInterFont({double? fontSize, Color? color}) {
+  static TextStyle boldMontserratFont({double? fontSize, Color? color}) {
     return TextStyle(
       fontSize: fontSize ?? FontSize.s14,
       color: color ?? AppColors.colorBlack,
@@ -28,46 +28,12 @@ class TextStyles {
     );
   }
 
-  static TextStyle extraBoldInterFont({double? fontSize, Color? color}) {
+  static TextStyle regularOpenSansFont({double? fontSize, Color? color}) {
     return TextStyle(
       fontSize: fontSize ?? FontSize.s14,
-      color: color ?? AppColors.colorBlack,
-      fontWeight: FontWeight.w800,
-    );
-  }
-
-  static TextStyle blackInterFont({double? fontSize, Color? color}) {
-    return TextStyle(
-      fontSize: fontSize ?? FontSize.s14,
-      color: color ?? AppColors.colorBlack,
-      fontWeight: FontWeight.w900,
-    );
-  }
-
-  static TextStyle regularRobotoMonoFont({double? fontSize, Color? color}) {
-    return TextStyle(
-      fontSize: fontSize ?? FontSize.s14,
-      fontFamily: 'RobotoMono',
+      fontFamily: 'OpenSans',
       color: color ?? AppColors.colorBlack,
       fontWeight: FontWeight.w400,
-    );
-  }
-
-  static TextStyle mediumRobotoMonoFont({double? fontSize, Color? color}) {
-    return TextStyle(
-      fontSize: fontSize ?? FontSize.s14,
-      fontFamily: 'RobotoMono',
-      color: color ?? AppColors.colorBlack,
-      fontWeight: FontWeight.w500,
-    );
-  }
-
-  static TextStyle boldRobotoMonoFont({double? fontSize, Color? color}) {
-    return TextStyle(
-      fontSize: fontSize ?? FontSize.s14,
-      fontFamily: 'RobotoMono',
-      color: color ?? AppColors.colorBlack,
-      fontWeight: FontWeight.w700,
     );
   }
 }
