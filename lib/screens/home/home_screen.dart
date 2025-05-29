@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:emonesia/components/dialog/dialog_date_picker.dart';
-import 'package:emonesia/components/dialog/dialog_date_picker2.dart';
 import 'package:emonesia/components/input/custom_boerderless_text_field.dart';
 import 'package:emonesia/resources/constants/app_constants.dart';
 import 'package:emonesia/resources/constants/asset_constants.dart';
