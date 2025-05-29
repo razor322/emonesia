@@ -1,3 +1,6 @@
+import 'package:emonesia/resources/constants/app_constants.dart';
+import 'package:emonesia/resources/constants/asset_constants.dart';
+import 'package:emonesia/utils/extensions/string_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:emonesia/routes/app_routes.dart';
@@ -8,20 +11,14 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 3), () {
-      Get.offNamed(AppRoutes.main);
+    Future.delayed(AppConstants.SPLASH_DURATION, () {
+      Get.offNamed(AppRoutes.result);
     });
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Container(
-            color: AppColors.colorWhite,
-            child: Text(
-              "splash",
-            ),
-          ),
-        ),
-      ),
+      backgroundColor: AppColors.colorBackground,
+      body: Center(
+          child: AssetConstants.IMAGE_SPLASH
+              .assetPng(fit: BoxFit.cover, width: Get.width * 10)),
     );
   }
 }
