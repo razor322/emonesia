@@ -12,7 +12,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(AppConstants.SPLASH_DURATION, () {
-      Get.offNamed(AppRoutes.result);
+      Get.offNamed(AppRoutes.main);
     });
     return Scaffold(
       backgroundColor: AppColors.colorBackground,

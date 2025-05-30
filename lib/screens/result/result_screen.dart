@@ -1,8 +1,15 @@
-import 'dart:io';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:emonesia/components/custom_on_tap.dart';
+import 'package:emonesia/components/app/custom_scaffold.dart';
+import 'package:emonesia/components/card/custom_result_card.dart';
+import 'package:emonesia/components/card/emotion_card.dart';
+import 'package:emonesia/components/custom_closable_searchbar.dart';
+import 'package:emonesia/resources/constants/app_constants.dart';
 import 'package:emonesia/resources/constants/asset_constants.dart';
-import 'package:emonesia/styles/app_colors.dart';
+import 'package:emonesia/routes/app_routes.dart';
+import 'package:emonesia/styles/app_sizes.dart';
+import 'package:emonesia/styles/text_styles.dart';
+import 'package:emonesia/utils/extensions/double_extension.dart';
 import 'package:emonesia/utils/extensions/string_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,29 +19,61 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.colorPrimary.withOpacity(0.19),
-        centerTitle: false,
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        leading: CustomOnTap(
-          onTap: () {
-            Get.back();
-          },
-          child: Icon(
-            Platform.isIOS ? Icons.arrow_back_ios_new : Icons.arrow_back,
-          ),
-        ),
-      ),
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: AssetConstants.IMAGE_BG.assetPng(
+    return CustomScaffold(child: _buildBody());
+  }
+
+  Widget _buildBody() {
+    return _buildContent();
+  }
+
+  Widget _buildContent() {
+    return Positioned.fill(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.s26),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AssetConstants.IMAGE_LOGO.assetPng(
               fit: BoxFit.cover,
             ),
-          ),
-        ],
+            AppSizes.s16.toVerticalSpace(),
+            Text(
+              AppConstants.LABEL_HOME_HEADER,
+              style: TextStyles.boldMontserratFont(fontSize: AppSizes.s20),
+            ),
+            AppSizes.s65.toVerticalSpace(),
+            ResultCard(
+              title: '"Makan siang bergizi"',
+              subtitle: AppConstants.LABEL_HASIL_SUBHEADER,
+            ),
+            AppSizes.s16.toVerticalSpace(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                EmotionResultCard(
+                  imageAsset: AssetConstants.IMAGE_EMOTICON,
+                  titleCard: AppConstants.LABEL_HASIL_EMOSI,
+                  title: "Bahagia",
+                  label: "Positif",
+                ),
+                EmotionResultCard(
+                  imageAsset: AssetConstants.IMAGE_SEARCH,
+                  titleCard: AppConstants.LABEL_HASIL_DETEKSI,
+                  title: "50 kali",
+                  label: "20%",
+                  isDetection: true,
+                ),
+              ],
+            ),
+            AppSizes.s32.toVerticalSpace(),
+            ClosableSearchBar(
+              onPress: () {
+                Get.offAndToNamed(AppRoutes.main);
+              },
+              icon: Icon(Icons.close),
+            ),
+          ],
+        ),
       ),
     );
   }
