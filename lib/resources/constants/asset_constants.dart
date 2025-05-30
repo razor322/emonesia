@@ -8,12 +8,14 @@ class AssetConstants {
   static const String IMAGE_PATH = '${BASE_URL_ASSET}images/';
 
   ///ICONS
-  static const String ICON_SEARCH = '${ICON_PATH}/search';
-  static const String ICON_DATE = '${ICON_PATH}/date';
-  static const String ICON_EMOTION = '${ICON_PATH}/emotion';
+  static const String ICON_SEARCH = '${ICON_PATH}search';
+  static const String ICON_DATE = '${ICON_PATH}date';
+  static const String ICON_EMOTION = '${ICON_PATH}emoticon';
 
   ///IMAGES
   static const String IMAGE_SPLASH = '${IMAGE_PATH}splash';
   static const String IMAGE_BG = '${IMAGE_PATH}bg';
   static const String IMAGE_LOGO = '${IMAGE_PATH}logo';
+  static const String IMAGE_EMOTICON = '${IMAGE_PATH}emoticon';
+  static const String IMAGE_SEARCH = '${IMAGE_PATH}search';
 }
