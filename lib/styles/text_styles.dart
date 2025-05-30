@@ -6,6 +6,7 @@ import 'app_colors.dart';
 class TextStyles {
   static TextStyle regularMontserratFont({double? fontSize, Color? color}) {
     return TextStyle(
+      fontFamily: 'Montserrat',
       fontSize: fontSize ?? FontSize.s14,
       color: color ?? AppColors.colorBlack,
       fontWeight: FontWeight.w400,
@@ -14,6 +15,7 @@ class TextStyles {
 
   static TextStyle mediumMontserratFont({double? fontSize, Color? color}) {
     return TextStyle(
+      fontFamily: 'Montserrat',
       fontSize: fontSize ?? FontSize.s14,
       color: color ?? AppColors.colorBlack,
       fontWeight: FontWeight.w500,
@@ -22,6 +24,7 @@ class TextStyles {
 
   static TextStyle boldMontserratFont({double? fontSize, Color? color}) {
     return TextStyle(
+      fontFamily: 'Montserrat',
       fontSize: fontSize ?? FontSize.s14,
       color: color ?? AppColors.colorBlack,
       fontWeight: FontWeight.w700,
