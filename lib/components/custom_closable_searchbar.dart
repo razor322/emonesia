@@ -9,11 +9,15 @@ class ClosableSearchBar extends StatelessWidget {
   final String? hintText;
   final VoidCallback onPress;
   final Icon icon;
-
-  const ClosableSearchBar({
+  final Widget? suffixIcon;
+  final Function(String)? onChanged;
+  final FocusNode _focusNode = FocusNode();
+  ClosableSearchBar({
     super.key,
     this.controller,
     this.hintText,
+    this.suffixIcon,
+    this.onChanged,
     required this.onPress,
     required this.icon,
   });
@@ -23,11 +27,14 @@ class ClosableSearchBar extends StatelessWidget {
     return Row(
       children: [
         CustomBorderlessTextField(
+          focusNode: _focusNode,
           controller: controller,
           radius: AppSizes.s60,
           hintSize: AppSizes.s14,
           hintColor: AppColors.colorGrey,
           hintText: hintText,
+          suffixIcon: suffixIcon,
+          onChanged: onChanged,
         ),
         AppSizes.s8.toHorizontalSpace(),
         IconButton(
