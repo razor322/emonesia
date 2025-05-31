@@ -4,6 +4,7 @@ import 'package:emonesia/services/lib/api_services.dart';
 import 'package:emonesia/services/lib/model/result_response.dart';
 import 'package:emonesia/services/prediction/model/prediction_request.dart';
 import 'package:emonesia/services/prediction/model/prediction_response.dart';
+import 'package:emonesia/utils/utility.dart';
 
 class PredictionDataSource extends ApiService {
   /// Fetches a prediction from the API.
@@ -11,15 +12,28 @@ class PredictionDataSource extends ApiService {
   Future<Either<ResultResponse, PredictionResponse>> fetchPrediction(
       PredictionRequest predictionRequest) async {
     try {
+      cprint('[DEBUG] Body yang dikirim: ${predictionRequest.toJson()}',
+          warningIn: 'Prediction Request API');
       final response = await post(
         AppConstants.apiBaseUrl,
         body: predictionRequest.toJson(),
       );
+      cprint('[DEBUG] Response dari API: $response',
+          warningIn: 'Prediction Response API');
       if (response != null) {
+        cprint('[DEBUG] Body yang dikirim: ${predictionRequest.toJson()}',
+            warningIn: 'Prediction Request API');
+        cprint('[DEBUG] Response dari API: $response',
+            warningIn: 'Prediction Response API');
+        if (response['status'] != 'Success') {
+          return Left(ResultResponse(
+              status: "Error",
+              message: response['message'] ?? "Unknown error"));
+        }
         return Right(PredictionResponse.fromJson(response));
       } else {
         return Left(
-            ResultResponse(status: "Error", message: "Failed to check in!"));
+            ResultResponse(status: "Error", message: "Failed to get data!"));
       }
     } catch (e) {
       print(e);
