@@ -6,8 +6,9 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class CustomDateRangePicker extends StatelessWidget {
   final void Function(PickerDateRange?) onSubmit;
-
-  const CustomDateRangePicker({Key? key, required this.onSubmit})
+  final DateRangePickerController? controller;
+  const CustomDateRangePicker(
+      {Key? key, required this.onSubmit, this.controller})
       : super(key: key);
 
   @override
@@ -25,7 +26,7 @@ class CustomDateRangePicker extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-              color: Colors.blue,
+              color: AppColors.colorPrimary,
               child: const Text(
                 'Pilih Tanggal',
                 style: TextStyle(color: Colors.white, fontSize: 18),
@@ -34,10 +35,18 @@ class CustomDateRangePicker extends StatelessWidget {
             SizedBox(
               height: 500,
               child: SfDateRangePicker(
+                controller: controller,
                 showNavigationArrow: true,
                 showTodayButton: true,
                 selectionColor: AppColors.colorPrimary,
                 rangeSelectionColor: AppColors.colorPrimary.withOpacity(0.25),
+                startRangeSelectionColor: AppColors.colorPrimary,
+                endRangeSelectionColor: AppColors.colorPrimary,
+                todayHighlightColor: AppColors.colorPrimary,
+                selectionTextStyle: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
                 view: DateRangePickerView.month,
                 headerStyle: DateRangePickerHeaderStyle(
                   textAlign: TextAlign.center,
