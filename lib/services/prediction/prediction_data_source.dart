@@ -25,12 +25,13 @@ class PredictionDataSource extends ApiService {
             warningIn: 'Prediction Request API');
         cprint('[DEBUG] Response dari API: $response',
             warningIn: 'Prediction Response API');
-        if (response['status'] != 'Success') {
-          return Left(ResultResponse(
-              status: "Error",
-              message: response['message'] ?? "Unknown error"));
+        if (response.containsKey('dominant_label')) {
+          return Right(PredictionResponse.fromJson(response));
         }
-        return Right(PredictionResponse.fromJson(response));
+        return Left(ResultResponse(
+          status: "Error",
+          message: "Unexpected API response format",
+        ));
       } else {
         return Left(
             ResultResponse(status: "Error", message: "Failed to get data!"));

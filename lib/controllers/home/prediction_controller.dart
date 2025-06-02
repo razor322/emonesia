@@ -60,12 +60,17 @@ class PredictionController extends GetxController {
         ),
       );
       LoadingUtils.hideLoader();
+      cprint(predictionData.toJson(),
+          event: 'Prediction Success', warningIn: 'Prediction data controller');
+
       response.fold(
         (error) => Get.snackbar('Error', error.message,
             snackPosition: SnackPosition.BOTTOM),
         (data) {
           predictionData.value = data;
-          cprint(data, event: 'Prediction Success');
+          cprint(data,
+              event: 'Prediction Success', warningIn: 'Prediction data');
+          cprint("Data berhasil, pindah halaman...");
           keyword.clear();
           dateRangeController.selectedRange = null;
           Get.offAndToNamed(AppRoutes.result);
