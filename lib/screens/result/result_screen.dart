@@ -4,6 +4,7 @@ import 'package:emonesia/components/app/custom_scaffold.dart';
 import 'package:emonesia/components/card/custom_result_card.dart';
 import 'package:emonesia/components/card/emotion_card.dart';
 import 'package:emonesia/components/custom_closable_searchbar.dart';
+import 'package:emonesia/controllers/home/prediction_controller.dart';
 import 'package:emonesia/resources/constants/app_constants.dart';
 import 'package:emonesia/resources/constants/asset_constants.dart';
 import 'package:emonesia/routes/app_routes.dart';
@@ -15,7 +16,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key});
+  ResultScreen({super.key});
+  final PredictionController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +29,10 @@ class ResultScreen extends StatelessWidget {
   }
 
   Widget _buildContent() {
-    return Positioned.fill(
-      child: Padding(
+    return Obx(() {
+      final data = controller.predictionData.value;
+
+      return Padding(
         padding: EdgeInsets.symmetric(horizontal: AppSizes.s26),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -38,12 +42,12 @@ class ResultScreen extends StatelessWidget {
             ),
             AppSizes.s16.toVerticalSpace(),
             Text(
-              AppConstants.LABEL_HOME_HEADER,
+              AppConstants.LABEL_HASIL_HEADER,
               style: TextStyles.boldMontserratFont(fontSize: AppSizes.s20),
             ),
             AppSizes.s65.toVerticalSpace(),
             ResultCard(
-              title: '"Makan siang bergizi"',
+              title: '"${data?.keyword}"',
               subtitle: AppConstants.LABEL_HASIL_SUBHEADER,
             ),
             AppSizes.s16.toVerticalSpace(),
@@ -53,14 +57,14 @@ class ResultScreen extends StatelessWidget {
                 EmotionResultCard(
                   imageAsset: AssetConstants.IMAGE_EMOTICON,
                   titleCard: AppConstants.LABEL_HASIL_EMOSI,
-                  title: "Bahagia",
-                  label: "Positif",
+                  title: data?.dominantLabel ?? "",
+                  label: "",
                 ),
                 EmotionResultCard(
                   imageAsset: AssetConstants.IMAGE_SEARCH,
                   titleCard: AppConstants.LABEL_HASIL_DETEKSI,
-                  title: "50 kali",
-                  label: "20%",
+                  title: "${data?.jumlah ?? ""} kali",
+                  label: "${data?.persentase ?? ""}%",
                   isDetection: true,
                 ),
               ],
@@ -74,7 +78,7 @@ class ResultScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
+    });
   }
 }
