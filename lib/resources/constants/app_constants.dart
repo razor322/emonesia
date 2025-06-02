@@ -3,8 +3,10 @@
 class AppConstants {
   static const String appName = 'Emonesia';
   static const String appVersion = '1.0.0';
-  static const String apiBaseUrl =
-      'https://342f-2001-448a-1105-1ebd-ad79-161a-4b99-c390.ngrok-free.app/predict';
+  static const String Baseurl =
+      "https://aa1e-2001-448a-1105-1ebd-f88b-823d-9282-e1a3.ngrok-free.app";
+  static const String BaseRoute = "/predict";
+  static const String apiBaseUrl = Baseurl + BaseRoute;
 
   static const Duration SPLASH_DURATION = Duration(seconds: 2);
   static const Duration TOAST_DURATION = Duration(seconds: 5);
