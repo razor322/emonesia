@@ -26,7 +26,7 @@ class EmotionResultCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(AppSizes.s16),
-      width: AppSizes.s160,
+      width: AppSizes.s162,
       height: AppSizes.s145,
       decoration: BoxDecoration(
         color: AppColors.colorWhite,
