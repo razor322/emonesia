@@ -64,6 +64,7 @@ class AppSizes {
   static double s150 = 150.0;
   static double s155 = 155.0;
   static double s160 = 160.0;
+  static double s162 = 162.0;
   static double s165 = 165.0;
   static double s166 = 166.0;
   static double s170 = 170.0;
