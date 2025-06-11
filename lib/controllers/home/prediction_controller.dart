@@ -83,4 +83,23 @@ class PredictionController extends GetxController {
           snackPosition: SnackPosition.BOTTOM);
     }
   }
+
+  List<DetailEmosi> getSortedEmotions() {
+    final data = predictionData.value?.detailEmosi ?? [];
+
+    List<DetailEmosi> emosiCopy = List.from(data);
+    emosiCopy.sort((a, b) => b.jumlah.compareTo(a.jumlah));
+
+    if (emosiCopy.isNotEmpty) {
+      emosiCopy.removeAt(0);
+    }
+
+    if (emosiCopy.length <= 2) return emosiCopy;
+
+    final second = emosiCopy[0];
+    final last = emosiCopy.last;
+    final middle = emosiCopy.sublist(1, emosiCopy.length - 1);
+
+    return [second, ...middle, last];
+  }
 }
