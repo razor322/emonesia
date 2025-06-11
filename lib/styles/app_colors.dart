@@ -24,6 +24,7 @@ class AppColors {
   static const colorLightYellow = Color(0xFFFDF1D1);
   static const colorRed = Color(0xFFEF4922);
   static const colorOrange = Color(0xFFFD910D);
+  static const colorPurple = Color(0xFF9C27B0);
 
   static const colorTxtWaiting = Color(0XFFFD910D);
   static const colorBgWaiting = Color(0XFFFDF1D1);
