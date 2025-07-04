@@ -21,6 +21,8 @@ class CustomBorderlessTextField extends StatelessWidget {
   final Color? textColor;
   final double? hintSize;
   final double? textSize;
+  final double? width;
+  final double? height;
   final bool readOnly;
   final bool enabled;
   final bool? obscureText;
@@ -29,6 +31,8 @@ class CustomBorderlessTextField extends StatelessWidget {
 
   const CustomBorderlessTextField({
     Key? key,
+    this.width,
+    this.height,
     this.controller,
     this.maxLines,
     this.hintText,
@@ -60,8 +64,8 @@ class CustomBorderlessTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: AppSizes.s280,
-        height: AppSizes.s50,
+        width: width ?? AppSizes.s280,
+        height: height ?? AppSizes.s50,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(radius ?? AppSizes.s4),
           border: Border.all(width: 2, color: AppColors.colorBorder),
