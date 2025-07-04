@@ -4,9 +4,11 @@ import 'package:emonesia/components/app/custom_scaffold.dart';
 import 'package:emonesia/components/card/custom_button.dart';
 import 'package:emonesia/components/custom_closable_searchbar.dart';
 import 'package:emonesia/components/dialog/dialog_date_picker.dart';
+import 'package:emonesia/components/input/custom_boerderless_text_field.dart';
 import 'package:emonesia/controllers/home/prediction_controller.dart';
 import 'package:emonesia/resources/constants/app_constants.dart';
 import 'package:emonesia/resources/constants/asset_constants.dart';
+import 'package:emonesia/styles/app_colors.dart';
 import 'package:emonesia/styles/app_sizes.dart';
 import 'package:emonesia/styles/text_styles.dart';
 import 'package:emonesia/utils/extensions/double_extension.dart';
@@ -74,6 +76,7 @@ class HomeScreen extends StatelessWidget {
                           controller: controller.dateRangeController,
                           onSubmit: (range) {
                             if (range != null) {
+                              controller.selectedRange.value = range;
                               print("Start: ${range.startDate}");
                               print("End: ${range.endDate}");
                             }
@@ -85,7 +88,33 @@ class HomeScreen extends StatelessWidget {
                   icon: Icon(Icons.calendar_month),
                 ),
               ),
-              AppSizes.s24.toVerticalSpace(),
+
+              Obx(() {
+                final range = controller.selectedRange.value;
+                final start = range?.startDate?.getFormattedDateddMMyyyy();
+                final end = range?.endDate?.getFormattedDateddMMyyyy();
+                if (range == null) {
+                  return Text("");
+                }
+                return Padding(
+                  padding:
+                      EdgeInsets.only(top: AppSizes.s24, bottom: AppSizes.s24),
+                  child: IgnorePointer(
+                    ignoring: true,
+                    child: CustomBorderlessTextField(
+                      width: double.infinity,
+                      readOnly: true,
+                      radius: AppSizes.s60,
+                      controller: TextEditingController(text: "$start - $end"),
+                      suffixIcon: Icon(
+                        Icons.calendar_month,
+                        color: AppColors.colorPrimary,
+                      ),
+                    ),
+                  ),
+                );
+              }),
+
               CustomPrimaryButton(
                 onPressed: () {
                   if (controller.keyword.text.isEmpty ||

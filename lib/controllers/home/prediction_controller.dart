@@ -13,12 +13,14 @@ import 'package:emonesia/utils/extensions/datetime_extension.dart';
 class PredictionController extends GetxController {
   final PredictionRepository predictionRepository = locator();
   final predictionData = Rxn<PredictionResponse>();
+  final selectedRange = Rxn<PickerDateRange>();
 
   TextEditingController keyword = TextEditingController();
   DateRangePickerController dateRangeController = DateRangePickerController();
 
   var textValue = ''.obs;
-
+  DateTime? get startRange => selectedRange.value?.startDate;
+  DateTime? get endRange => selectedRange.value?.endDate;
   @override
   void onInit() {
     super.onInit();
