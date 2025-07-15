@@ -1,10 +1,13 @@
 // ignore_for_file: constant_identifier_names
+enum DataType {
+  latest,
+  random,
+}
 
 class AppConstants {
   static const String appName = 'Emonesia';
   static const String appVersion = '1.0.0';
-  static const String Baseurl =
-      "https://3d74-2404-8000-1055-276-a87d-a6a5-3e40-2de6.ngrok-free.app";
+  static const String Baseurl = "https://a062bc91fca9.ngrok-free.app";
   static const String BaseRoute = "/predict";
   static const String apiBaseUrl = Baseurl + BaseRoute;
 

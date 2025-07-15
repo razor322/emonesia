@@ -115,10 +115,19 @@ class HomeScreen extends StatelessWidget {
                 );
               }),
 
+              Obx(() => Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      buildCheckBox(value: "latest", label: "Data Terbaru"),
+                      buildCheckBox(value: "random", label: "Data Acak"),
+                    ],
+                  )),
+
               CustomPrimaryButton(
                 onPressed: () {
                   if (controller.keyword.text.isEmpty ||
-                      controller.dateRangeController.selectedRange == null) {
+                      controller.dateRangeController.selectedRange == null ||
+                      controller.selectedType.value.isEmpty) {
                     Get.snackbar(
                       'Error',
                       'Please fill in all fields',
@@ -126,6 +135,7 @@ class HomeScreen extends StatelessWidget {
                     );
                     return;
                   }
+                  cprint("Type: ${controller.selectedType.value}");
                   controller.fetchPrediction();
 
                   cprint("Keyword: ${controller.keyword.text}");
@@ -143,5 +153,23 @@ class HomeScreen extends StatelessWidget {
         ),
       ],
     ));
+  }
+
+  Widget buildCheckBox({required String value, required String label}) {
+    return Row(
+      children: [
+        Checkbox(
+          side: BorderSide(color: AppColors.colorPrimary, width: 2),
+          activeColor: AppColors.colorPrimary,
+          checkColor: AppColors.colorWhite,
+          // fillColor: WidgetStateProperty.all<Color>(AppColors.colorPrimary),
+          value: controller.selectedType.value == value,
+          onChanged: (val) {
+            controller.selectedType.value = val! ? value : "";
+          },
+        ),
+        Text(label),
+      ],
+    );
   }
 }

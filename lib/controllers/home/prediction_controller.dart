@@ -19,6 +19,7 @@ class PredictionController extends GetxController {
   DateRangePickerController dateRangeController = DateRangePickerController();
 
   var textValue = ''.obs;
+  var selectedType = ''.obs;
   DateTime? get startRange => selectedRange.value?.startDate;
   DateTime? get endRange => selectedRange.value?.endDate;
   @override
@@ -35,6 +36,13 @@ class PredictionController extends GetxController {
   }
 
   Future<void> fetchPrediction() async {
+    if (selectedType.value.isEmpty) {
+      Get.snackbar(
+        "Error",
+        "Please select the data type (Latest or Random)",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
     final startDate = dateRangeController.selectedRange!.startDate!
         .getFormattedDate()
         .toString();
@@ -46,6 +54,8 @@ class PredictionController extends GetxController {
       warningIn: 'Prediction Dates',
     );
     cprint('Keyword: ${keyword.text}', warningIn: 'Prediction Keyword');
+    cprint('Selected Type: ${selectedType.value}',
+        warningIn: 'Prediction Type');
     // Validate input
     if (keyword.text.isEmpty || startDate.isEmpty || endDate.isEmpty) {
       Get.snackbar('Error', 'All fields are required',
@@ -59,6 +69,7 @@ class PredictionController extends GetxController {
           keyword: keyword.text,
           startDate: startDate,
           endDate: endDate,
+          type: selectedType.value,
         ),
       );
       LoadingUtils.hideLoader();

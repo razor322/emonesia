@@ -14,11 +14,13 @@ class PredictionRequest {
   String keyword;
   String startDate;
   String endDate;
+  String type;
 
   PredictionRequest({
     required this.keyword,
     required this.startDate,
     required this.endDate,
+    required this.type,
   });
 
   factory PredictionRequest.fromJson(Map<String, dynamic> json) =>
@@ -26,11 +28,13 @@ class PredictionRequest {
         keyword: json["keyword"],
         startDate: json["startDate"],
         endDate: json["endDate"],
+        type: json["type"],
       );
 
   Map<String, dynamic> toJson() => {
         "keyword": keyword,
         "startDate": startDate,
         "endDate": endDate,
+        "type": type,
       };
 }
