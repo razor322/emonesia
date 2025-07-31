@@ -3,6 +3,7 @@ import 'package:emonesia/routes/app_routes.dart';
 import 'package:emonesia/services/prediction/model/prediction_request.dart';
 import 'package:emonesia/services/prediction/model/prediction_response.dart';
 import 'package:emonesia/services/prediction/prediction_repository.dart';
+import 'package:emonesia/services/remote_config/remote_config_repository.dart';
 import 'package:emonesia/utils/loader_utils.dart';
 import 'package:emonesia/utils/utility.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +13,22 @@ import 'package:emonesia/utils/extensions/datetime_extension.dart';
 
 class PredictionController extends GetxController {
   final PredictionRepository predictionRepository = locator();
+  final RemoteConfigRepository remoteConfigRepository = locator();
   final predictionData = Rxn<PredictionResponse>();
   final selectedRange = Rxn<PickerDateRange>();
 
   TextEditingController keyword = TextEditingController();
   DateRangePickerController dateRangeController = DateRangePickerController();
-
   var textValue = ''.obs;
   var selectedType = ''.obs;
   DateTime? get startRange => selectedRange.value?.startDate;
   DateTime? get endRange => selectedRange.value?.endDate;
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    final String apiBaseUrl = await remoteConfigRepository.getApiBaseUrl();
+    cprint('[DEBUG HOME] API Base URL: $apiBaseUrl',
+        warningIn: 'Prediction API');
     keyword.addListener(() {
       textValue.value = keyword.text;
     });
