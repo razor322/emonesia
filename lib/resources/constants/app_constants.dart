@@ -7,7 +7,7 @@ enum DataType {
 class AppConstants {
   static const String appName = 'Emonesia';
   static const String appVersion = '1.0.0';
-  static const String Baseurl = "https://a062bc91fca9.ngrok-free.app";
+  static const String Baseurl = "https://5b8c381c232e.ngrok-free.app";
   static const String BaseRoute = "/predict";
   static const String apiBaseUrl = Baseurl + BaseRoute;
 

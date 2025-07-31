@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:emonesia/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:emonesia/routes/app_routes.dart';
@@ -21,13 +23,16 @@ void main() async {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     HttpOverrides.global = MyHttpoverrides();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+
     await di.init();
     runApp(const MyApp());
   }, (error, stack) {
     log('Error: $error');
     log('Stack trace: $stack');
   });
-  ;
 }
 
 class MyApp extends StatelessWidget {
