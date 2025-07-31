@@ -1,10 +1,12 @@
+import 'dart:io';
+
 import 'package:emonesia/controllers/result/result_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:get/get.dart';
 import 'package:emonesia/styles/app_colors.dart';
 import 'package:emonesia/styles/app_sizes.dart';
 import 'package:emonesia/styles/text_styles.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfViewerScreen extends StatelessWidget {
   PdfViewerScreen({super.key});
@@ -39,8 +41,8 @@ class PdfViewerScreen extends StatelessWidget {
         },
         child: const Icon(Icons.download, color: AppColors.colorWhite),
       ),
-      body: PDFView(
-        filePath: filePath,
+      body: SfPdfViewer.file(
+        File(filePath),
       ),
     );
   }
